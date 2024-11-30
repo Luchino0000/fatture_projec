@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 
 /*
@@ -16,7 +17,12 @@ use App\Http\Controllers\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+// Route::get('/welcome2', [ClientController::class,'welcome2'])->name('welcome2');
+Route::get('/welcome2', [ClientController::class, 'welcome2'])
+    ->middleware('auth')
+    ->name('welcome2');
 
 // ROTTE CLIENTI
 
@@ -34,4 +40,8 @@ Route::put('/clients/{client}',[ClientController::class,'update'])->name('update
 
 // ELIMINA CLIENTE
 Route::delete('/delete/clients/{client}', [ClientController::class, 'destroy'])->name('delete_clients');
+
+
+
+
 

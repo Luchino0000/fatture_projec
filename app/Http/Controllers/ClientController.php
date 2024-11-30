@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
 
+
+    public function welcome2(){
+        return view('welcome_2');
+    }
+
+
     public function index(){
         return view('clients.index');
     }
@@ -18,27 +24,23 @@ class ClientController extends Controller
 
     public function store(Request $request){
 
-    //   $validated =  $request->validate([
-    //         'name' => 'required|string|max:20',
-    //         'email' => 'required|email',
-    //     ]);
-
-    //     Client::create($validated);
-
     $clients = Client::create([
         'name' => $request->name,
         'email' => $request->email,
     ]);
-   
 
-        return redirect(route('all_clients'));
+      return redirect(route('all_clients'));
     }
+
+
+
 
     public function all(){
 
         $clients = Client::all();
         return view('clients.all',compact('clients'));
     }
+
 
 
     public function edit(Client $client){
@@ -56,6 +58,8 @@ class ClientController extends Controller
 
         return redirect(route('all_clients'));
     }
+
+
 
     public function destroy(Client $client){
        $client->delete();

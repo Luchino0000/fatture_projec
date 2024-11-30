@@ -1,0 +1,391 @@
+
+:root{
+    --myWhite : #fefae0;
+    --myBeige : #e3d5ca;
+    --blueNight : #03045e;
+    --royal : #8ecae6;
+    --orange : #ffb703;
+    --red : #780000;
+}
+@font-face {
+    font-family: Titolo;
+    src: url(/public/font/KustomCulture-Regular.ttf);
+}
+@font-face {
+    font-family: testi;
+    src: url(/public/font/ELEGANT\ TYPEWRITER\ Bold.ttf);
+}
+@font-face {
+    font-family: corsivo;
+    src: url();
+}
+
+
+/* Stile generale della card */
+.card {
+    width: 300px;                /* Larghezza della card */
+    padding: 20px;               /* Spaziatura interna */
+    border-radius: 15px;         /* Bordi arrotondati */
+    background-color: rgba(255, 255, 255, 0.5); /* Colore di sfondo bianco con opacità 50% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    backdrop-filter: blur(10px); /* Sfocatura dietro la card (per uno stile "frosted glass") */
+    margin: 20px auto;           /* Centrare la card */
+  }
+  
+  /* Titolo della card */
+  .card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;                 /* Colore del testo */
+  }
+  
+  /* Paragrafo della card */
+  .card p {
+    font-size: 16px;
+    color: #555;                 /* Colore del testo */
+  }
+  
+
+  .special-button {
+    padding: 15px 30px; /* Spaziatura interna */
+    font-size: 18px; /* Dimensione del testo */
+    font-weight: bold; /* Testo in grassetto */
+    color: #fff; /* Colore del testo */
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradiente di sfondo */
+    border: none; /* Nessun bordo */
+    border-radius: 50px; /* Bordi arrotondati */
+    cursor: pointer; /* Puntatore a mano */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombra */
+    transition: all 0.3s ease-in-out; /* Transizione morbida */
+    position: relative; /* Per controllare pseudo-elementi */
+    overflow: hidden; /* Nascondere gli elementi fuori bordo */
+  }
+  
+  .special-button::before {
+    content: ""; /* Pseudo-elemento vuoto */
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Luce bianca semi-trasparente */
+    transform: skewX(-45deg); /* Effetto inclinato */
+    transition: left 0.4s ease-in-out; /* Animazione morbida */
+  }
+  
+  .special-button:hover::before {
+    left: 100%; /* Sposta l'effetto a destra quando si passa sopra */
+  }
+  
+  .special-button:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Ombra più intensa */
+    transform: scale(1.05); /* Leggero ingrandimento */
+  }
+
+  body {
+    margin: 0; /* Rimuove il margine predefinito */
+    height: 100vh; /* Assicura che l'altezza copra l'intero viewport */
+    font-family: Arial, sans-serif; /* Font semplice e moderno */
+    background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb); /* Gradiente dinamico */
+    background-size: 300% 300%; /* Per animare il gradiente */
+    animation: backgroundAnimation 10s ease infinite; /* Effetto sfumato continuo */
+  }
+  
+  /* Animazione del gradiente */
+  @keyframes backgroundAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Pulsante centrato */
+  .special-button {
+    z-index: 1; /* Assicurati che il bottone sia visibile sopra lo sfondo */
+  }
+
+  /* Contenitore del modulo */
+.form-container {
+    background: rgba(255, 255, 255, 0.2); /* Sfondo semi-trasparente */
+    padding: 30px; /* Spaziatura interna */
+    border-radius: 15px; /* Bordi arrotondati */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombra per profondità */
+    backdrop-filter: blur(10px); /* Effetto "vetro smerigliato" */
+    text-align: center; /* Centra gli elementi */
+  }
+  
+  /* Stile degli input */
+  .form-input {
+    width: 100%; /* Larghezza totale */
+    padding: 12px 15px; /* Spaziatura interna */
+    margin: 10px 0; /* Spazio tra gli input */
+    border: none; /* Rimuove i bordi */
+    border-radius: 50px; /* Bordi arrotondati */
+    font-size: 16px; /* Dimensione del testo */
+    background: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Effetto interno */
+    color: #333; /* Colore del testo */
+    outline: none; /* Rimuove il contorno */
+    transition: all 0.3s ease-in-out; /* Transizione per l'effetto focus */
+  }
+  
+  /* Effetto focus sugli input */
+  .form-input:focus {
+    background: rgba(255, 255, 255, 1); /* Sfondo più intenso */
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.5); /* Bagliore viola */
+  }
+  
+  /* Stile del pulsante */
+  .special-button {
+    width: 100%; /* Larghezza del pulsante */
+    margin-top: 15px; /* Spazio sopra il pulsante */
+  }
+  
+  
+  /* Navbar personalizzata */
+.custom-navbar {
+    background-color: #4CAF50; /* Verde scuro */
+    border-bottom: 2px solid #388E3C; /* Bordi inferiori verde più scuro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-navbar .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.custom-navbar .navbar-brand:hover {
+    color: #81C784; /* Verde chiaro al passaggio del mouse */
+}
+
+.custom-navbar .nav-link {
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #388E3C; /* Verde scuro */
+    background-color: rgba(255, 255, 255, 0.2); /* Sfondo semi-trasparente */
+    border-radius: 5px;
+}
+
+/* Aggiungi spazio tra i link */
+.custom-navbar .nav-item {
+    margin-left: 20px;
+}
+
+/* Pulsante Logout */
+.custom-logout-btn {
+    background-color: #FF7043; /* Arancione chiaro per il logout */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-logout-btn:hover {
+    background-color: #D84B29; /* Colore più scuro quando l'utente passa sopra */
+    transform: scale(1.05); /* Leggero effetto di ingrandimento */
+}
+
+/* Navbar Mobile */
+@media (max-width: 767px) {
+    .custom-navbar .navbar-nav {
+        text-align: center;
+    }
+
+    .custom-navbar .nav-item {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .custom-navbar .navbar-toggler {
+        border: none;
+    }
+}
+
+
+/* Aggiungi uno sfondo alla pagina */
+body {
+    background-color: #f4f6f9; /* Grigio chiaro per lo sfondo */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Stile per il titolo della pagina */
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #388E3C; /* Verde scuro per il titolo */
+    text-transform: uppercase;
+}
+
+/* Righe personalizzate per i clienti */
+.custom-client-row {
+    background-color: #ffffff; /* Sfondo bianco per ogni riga */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+/* Righe che cambiano colore al passaggio del mouse */
+.custom-client-row:hover {
+    background-color: #f1f1f1; /* Grigio chiaro quando la riga è evidenziata */
+}
+
+/* Colore del testo per ogni cliente */
+.client-id,
+.client-name,
+.client-email {
+    font-size: 1.1rem;
+    color: #333; /* Colore grigio scuro per il testo */
+    font-weight: 500;
+}
+
+/* Bottone personalizzato */
+.custom-btn {
+    font-size: 0.875rem;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
+}
+
+/* Bottone Modifica (giallo) */
+.custom-btn.btn-warning:hover {
+    background-color: #FFC107; /* Giallo scuro */
+}
+
+/* Bottone Elimina (rosso) */
+.custom-btn.btn-danger:hover {
+    background-color: #D32F2F; /* Rosso scuro */
+}
+
+/* Margini per i bottoni */
+form button {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+/* Righe responsivi per schermi piccoli */
+@media (max-width: 767px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-2, .col-4, .col-1 {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Stile generale per la pagina */
+.container {
+    background-color: #f4f6f9;
+    padding-top: 50px;
+}
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.page-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #388E3C; /* Verde scuro */
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.form-add-client {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per i campi del modulo */
+.form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #388E3C; /* Verde scuro */
+}
+
+.form-control {
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #388E3C; /* Colore verde chiaro al focus */
+    box-shadow: 0 0 5px rgba(56, 142, 60, 0.5);
+}
+
+/* Stile per il bottone di invio */
+.custom-btn {
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    transform: scale(1.05); /* Ingrossamento leggero */
+}
+
+.custom-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(56, 142, 60, 0.5); /* Verde al focus */
+}
+
+.custom-btn.btn-success {
+    background-color: #388E3C;
+    border: none;
+}
+
+.custom-btn.btn-success:hover {
+    background-color: #2c6d29; /* Verde scuro al passaggio */
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .form-add-client {
+        padding: 20px;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+
+    .custom-btn {
+        font-size: 1rem;
+        width: 50%;
+    }
+}
+
+
+
+
+
+
