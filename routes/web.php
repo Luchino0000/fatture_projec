@@ -70,4 +70,8 @@ Route::delete('/delete/clients/{client}', [ClientController::class, 'destroy'])-
     Route::delete('invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
 
+    // Rotta per scaricare la fattura in PDF
+    Route::get('invoice/{invoiceId}/download', [InvoiceController::class, 'download'])->name('invoices.pdf');
+
+
 

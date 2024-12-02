@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class InvoiceController extends Controller
 {
@@ -130,6 +131,22 @@ public function destroy(Invoice $invoice)
 
     return redirect()->route('invoices.index')->with('success', 'Fattura eliminata con successo!');
 }
+
+
+
+public function download($invoiceId)
+{
+    // Trova la fattura tramite ID
+    $invoice = Invoice::findOrFail($invoiceId);
+    
+    // Passa i dati alla vista e genera il PDF
+    $pdf = FacadePdf::loadView('invoices.pdf', compact('invoice'));
+
+    // Ritorna il PDF al browser come download
+    return $pdf->download('fattura_' . $invoice->number . '.pdf');
+}
+
+
 
 
 
