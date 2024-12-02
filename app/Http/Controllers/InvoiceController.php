@@ -13,6 +13,8 @@ class InvoiceController extends Controller
         $invoices = auth()->user()->invoices; 
 
         $invoiceCount = $invoices->count();
+
+ 
        
 
         return view('invoices.index', compact('invoices','invoiceCount'));
@@ -35,7 +37,12 @@ class InvoiceController extends Controller
             'data_fattura' => 'required|date',
             'importo' => 'required|numeric',
             'descrizione' => 'nullable|string',
+            'invoice_number' => 'required|string|unique:invoices,invoice_number', // Numero fattura univoco
         ]);
+
+         // Calcola l'IVA e il totale (IVA + importo)
+    $iva = 0.22 * $request->importo;  // Supponiamo che l'aliquota IVA sia 22%
+    $total = $request->importo + $iva;
     
         // Crea una nuova fattura associata all'utente autenticato
         $invoice = new Invoice([
@@ -44,6 +51,12 @@ class InvoiceController extends Controller
             'importo' => $request->importo,
             'descrizione' => $request->descrizione,
             'user_id' => auth()->id(), // Associa l'utente autenticato
+            'invoice_number' => $request->invoice_number,  // Numero fattura
+            'paid' => $request->has('paid'),  
+            'paid_at' => $request->has('paid') ? $request->paid_at : null,
+            'iva' => $iva,     // Aggiungi l'IVA calcolata
+            'total' => $total, // Aggiungi il totale
+            'user_id' => auth()->id(),  // Associa l'utente autenticato
         ]);
     
         $invoice->save();
@@ -60,9 +73,10 @@ public function edit(Invoice $invoice)
     if ($invoice->user_id !== auth()->id()) {
         abort(403, 'Non hai autorizzazione per modificare questa fattura.');
     }
-
+    
+    $invoice->data_fattura = $invoice->data_fattura->format('Y-m-d');
+    
     $clients = auth()->user()->clients;
-
 
     return view('invoices.edit', compact('invoice','clients'));
 }
@@ -80,7 +94,11 @@ public function update(Request $request, Invoice $invoice)
         'data_fattura' => 'required|date',
         'importo' => 'required|numeric',
         'descrizione' => 'nullable|string',
+        'invoice_number' => 'required|string|unique:invoices,invoice_number,' . $invoice->id,
     ]);
+
+    $iva = 0.22 * $request->importo;
+    $total = $request->importo + $iva;
 
     // Aggiorna la fattura
     $invoice->update([
@@ -88,6 +106,12 @@ public function update(Request $request, Invoice $invoice)
         'data_fattura' => $request->data_fattura,
         'importo' => $request->importo,
         'descrizione' => $request->descrizione,
+        'invoice_number' => $request->invoice_number,
+        'iva' => $iva,
+        'total' => $total,
+        'paid' => $request->has('paid'),
+        'paid_at' => $request->has('paid') ? $request->paid_at : null,
+        
     ]);
 
     return redirect()->route('invoices.index')->with('success', 'Fattura aggiornata con successo!');

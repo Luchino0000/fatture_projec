@@ -32,9 +32,13 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Numero Fattura</th>
                     <th>Cliente</th>
                     <th>Data Fattura</th>
-                    <th>Importo (€)</th>
+                    <th>Importo</th>
+                    <th>Totale</th>
+                    <th>IVA</th>
+                    <th>Stato</th>
                     <th>Azioni</th>
 
                 </tr>
@@ -42,9 +46,16 @@
             <tbody>
                 @foreach ($invoices as $invoice)
                     <tr>
+                        <td>{{ $invoice->invoice_number }}</td>
                         <td>{{ $invoice->client->name }}</td>
                         <td>{{ $invoice->data_fattura }}</td>
-                        <td>{{ $invoice->importo }}</td>
+                        <td>{{ number_format($invoice->importo, 2) }} €</td>
+                        <td>{{ number_format($invoice->iva, 2) }} €</td>
+                        <td>{{ number_format($invoice->total, 2) }} €</td>
+                      <td>{{ $invoice->paid ? 'Pagata' : 'Non pagata' }} 
+                        @if($invoice->paid == true)
+                          <p>il {{ $invoice->paid_at}}</p>
+                        @endif</td>
                         <td>
                             <a href="{{ route('invoices.edit', $invoice) }}" class="btn btn-warning btn-sm">Modifica</a>
                             <form action="{{ route('invoices.destroy', $invoice) }}" method="POST" style="display:inline;">

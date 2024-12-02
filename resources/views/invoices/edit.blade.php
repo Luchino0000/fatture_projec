@@ -37,14 +37,17 @@
                 @enderror
             </div>
 
-            <!-- Campo per la data della fattura -->
-            <div class="form-group mb-3">
-                <label for="data_fattura" class="form-label label-creazione">Data Fattura</label>
-                <input type="date" name="data_fattura" id="data_fattura" class="form-control" value="{{ old('data_fattura', $invoice->data_fattura) }}" required>
-                @error('data_fattura')
-                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                @enderror
+            <div class="form-group">
+                <label for="invoice_number">Numero Fattura</label>
+                <input type="text" name="invoice_number" id="invoice_number" class="form-control" value="{{ $invoice->invoice_number }}" required>
             </div>
+
+            <div class="form-group">
+                <label for="data_fattura">Data Fattura</label>
+                <input type="date" name="data_fattura" id="data_fattura" class="form-control" 
+                       value="{{ old('data_fattura', $invoice->data_fattura ? $invoice->data_fattura->format('Y-m-d') : '') }}">
+            </div>
+            
 
             <!-- Campo per l'importo -->
             <div class="form-group mb-3">
@@ -54,6 +57,26 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="form-group">
+                <label for="paid">Fattura Pagata?</label>
+                <input type="checkbox" name="paid" id="paid" value="1" 
+                       {{ $invoice->paid ? 'checked' : '' }} onchange="togglePaidDate()">
+            </div>
+        
+            <div class="form-group" id="paidDateGroup" style="{{ $invoice->paid ? '' : 'display: none;' }}">
+                <label for="paid_at">Data di Pagamento</label>
+                <input type="date" name="paid_at" id="paid_at" class="form-control" 
+                       value="{{ $invoice->paid_at ? $invoice->paid_at->format('Y-m-d') : '' }}">
+            </div>
+
+            <script>
+                function togglePaidDate() {
+                    const paidCheckbox = document.getElementById('paid');
+                    const paidDateGroup = document.getElementById('paidDateGroup');
+                    paidDateGroup.style.display = paidCheckbox.checked ? 'block' : 'none';
+                }
+            </script>
 
             <!-- Campo per la descrizione -->
             <div class="form-group mb-3">

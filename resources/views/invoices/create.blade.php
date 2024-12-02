@@ -92,6 +92,14 @@
                 @enderror
             </div>
 
+
+            <div class="form-group">
+                <label for="invoice_number">Numero Fattura</label>
+                <input type="text" name="invoice_number" id="invoice_number" class="form-control" required>
+            </div>
+
+           
+
             <!-- Campo per la data della fattura -->
             <div class="form-group mb-3">
                 <label for="data_fattura" class="form-label label-creazione">Data Fattura</label>
@@ -109,6 +117,25 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
             </div>
+            
+            <div class="form-group">
+                <label for="paid">Fattura Pagata?</label>
+                <input type="checkbox" name="paid" id="paid" value="1" onchange="togglePaidDate()">
+            </div>
+            
+            <div class="form-group" id="paidDateGroup" style="display: none;">
+                <label for="paid_at">Data di Pagamento</label>
+                <input type="date" name="paid_at" id="paid_at" class="form-control">
+            </div>
+
+            <script>
+                function togglePaidDate() {
+                    const paidCheckbox = document.getElementById('paid');
+                    const paidDateGroup = document.getElementById('paidDateGroup');
+                    paidDateGroup.style.display = paidCheckbox.checked ? 'block' : 'none';
+                }
+            </script>
+
 
             <!-- Campo per la descrizione -->
             <div class="form-group mb-3">
