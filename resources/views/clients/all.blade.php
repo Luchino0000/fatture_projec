@@ -3,10 +3,10 @@
 
     <x-navbar/>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center my-4 text-white">Tutti i Clienti</h2>
+                <h2 class="text-center my-4 ">Tutti i Clienti</h2>
             </div>
         </div>
 

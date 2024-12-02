@@ -15,6 +15,7 @@
                             <form>
                               <input for="email" name="email" type="email" placeholder="Email" class="form-input" required>
                               <input for="exampleInputPassword1" name="password" type="password" placeholder="Password" class="form-input" required>
+                              <p>Non sei registrato? <a href="/register">Registrati</a></p>
                               <button type="submit" class="special-button">Accedi</button>
                             </form>
                           </div>

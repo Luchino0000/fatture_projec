@@ -10,8 +10,10 @@ class ClientController extends Controller
 
 
     public function welcome2(){
+        
         return view('welcome_2');
     }
+
 
 
     public function index(){
@@ -27,6 +29,7 @@ class ClientController extends Controller
     $clients = Client::create([
         'name' => $request->name,
         'email' => $request->email,
+        'user_id' => auth()->id(),
     ]);
 
       return redirect(route('all_clients'));
@@ -37,7 +40,7 @@ class ClientController extends Controller
 
     public function all(){
 
-        $clients = Client::all();
+        $clients = auth()->user()->clients; 
         return view('clients.all',compact('clients'));
     }
 

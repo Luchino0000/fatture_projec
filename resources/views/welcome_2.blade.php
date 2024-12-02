@@ -14,14 +14,18 @@
     
                     <!-- Statistiche / Info -->
                     <div class="row dashboard-cards">
+                     
+                            
                         <div class="col-md-4 col-sm-12">
                             <div class="card dashboard-card">
                                 <div class="card-body">
                                     <h5 class="card-title">Totale Fatture</h5>
-                                    <p class="card-text">120</p> <!-- Modifica dinamicamente -->
+                                    <p class="card-text"></p> <!-- Modifica dinamicamente -->
                                 </div>
                             </div>
                         </div>
+
+                       
                         <div class="col-md-4 col-sm-12">
                             <div class="card dashboard-card">
                                 <div class="card-body">
@@ -43,12 +47,12 @@
                     <!-- Azioni veloci -->
                     <div class="row mt-5">
                         <div class="col-6">
-                            <a href="">
+                            <a href="{{ route('invoices.create') }}">
                                 <button class="btn btn-lg btn-primary w-100 custom-btn">Aggiungi Fattura</button>
                             </a>
                         </div>
                         <div class="col-6">
-                            <a href="">
+                            <a href="{{route('invoices.index')}}">
                                 <button class="btn btn-lg btn-secondary w-100 custom-btn">Visualizza Fatture</button>
                             </a>
                         </div>
